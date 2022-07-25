@@ -12,9 +12,10 @@ function App() {
         salt: '--==S4lT==--',
         result: '',
         decrypted: '',
-        copied: false
+        copied: false,
+        decryptRaw: ''
     });
-    const { apiKey, apiSecret, salt, result, decrypted, copied } = state;
+    const { apiKey, apiSecret, salt, result, decrypted, copied, decryptRaw } = state;
 
     const handleChange = (name) => (e) => {
         setState({
@@ -33,6 +34,19 @@ function App() {
             }, 4000);
         }
     }, [copied]);
+
+    useEffect(() => {
+        if(!decryptRaw){
+            return
+        }
+
+        let plain = decrypt(decryptRaw, salt);
+
+        setState({
+            ...state,
+            result: plain
+        });
+    }, [decryptRaw]);
 
     useEffect(() => {
         let encrypted = result;
@@ -67,6 +81,14 @@ function App() {
                     autoComplete="off"
                 >
                     <Grid container>
+                        <Grid item xs={12}>
+                            <TextField
+                                value={decryptRaw}
+                                onChange={handleChange('decryptRaw')}
+                                label="Decrypt"
+                                variant="outlined"
+                            />
+                        </Grid>
                         <Grid item xs={12}>
                             <TextField
                                 value={apiKey}

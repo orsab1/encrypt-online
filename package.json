@@ -16,9 +16,10 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "homepage": "https://orsab1.github.io/encrypt-online/",
   "scripts": {
     "start": "react-scripts start",
-    "gh-pages": "github-pages -r user/repo ./dist",
+    "gh-pages": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -42,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^4.0.0",
     "github-pages": "^3.0.2"
   },
   "browser": {
